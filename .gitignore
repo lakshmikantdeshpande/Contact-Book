@@ -1,8 +1,10 @@
 # Compiled class file
 *.class
+*.iml
 /target
 /dist
 /.mvn
+/.idea
 
 # Log file
 *.log
