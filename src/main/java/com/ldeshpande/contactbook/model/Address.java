@@ -3,10 +3,12 @@ package com.ldeshpande.contactbook.model;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.Embeddable;
 import javax.validation.constraints.Digits;
 
 @Data
-public class Address {
+@Embeddable
+class Address {
 
     @Length(max = 75)
     private String addressLine1;

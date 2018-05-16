@@ -1,27 +1,30 @@
 package com.ldeshpande.contactbook.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.i18n.phonenumbers.Phonenumber;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Generated;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.context.annotation.Primary;
-import org.springframework.data.annotation.Id;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Entity(name = "contact")
 @Data
 @EqualsAndHashCode(of = {"email"})
 public class Contact {
 
     @Id
-    @Generated
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     @JsonIgnore
-    private String id;
+    private Long id;
 
     @NotNull
     private Name name;
@@ -31,8 +34,10 @@ public class Contact {
     private String email;
 
     @Valid
+    @Embedded
     private List<Address> addresses;
 
-    private List<Phone> phoneNumbers;
+    @Embedded
+    private List<Phonenumber.PhoneNumber> phoneNumbers;
 
 }

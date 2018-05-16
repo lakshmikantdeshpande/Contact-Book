@@ -3,9 +3,12 @@ package com.ldeshpande.contactbook.model;
 import lombok.Getter;
 import lombok.ToString;
 
+import javax.persistence.Embeddable;
+
 @Getter
 @ToString
-public enum Title {
+@Embeddable
+enum Title {
 
     MR("Mr."),
     MRS("Mrs.");

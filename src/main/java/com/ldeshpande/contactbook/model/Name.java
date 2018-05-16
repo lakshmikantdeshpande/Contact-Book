@@ -2,11 +2,13 @@ package com.ldeshpande.contactbook.model;
 
 import lombok.Data;
 
+import javax.persistence.Embeddable;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class Name {
+@Embeddable
+class Name {
 
     @NotNull
     private Title title;
