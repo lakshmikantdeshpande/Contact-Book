@@ -4,8 +4,10 @@ import com.ldeshpande.contactbook.model.Contact;
 
 public interface ContactService {
 
-    boolean addContact(Contact contact);
+    Contact addContact(Contact contact);
 
     Contact findContactByEmail(String email);
+
+    Contact findContactByName(String name);
 
 }

@@ -1,28 +1,30 @@
 package com.ldeshpande.contactbook.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.i18n.phonenumbers.Phonenumber;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Entity(name = "contact")
+@Entity
+@Table
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(of = {"email"})
 public class Contact {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
+    @GeneratedValue
     @JsonIgnore
     private Long id;
 
@@ -37,7 +39,8 @@ public class Contact {
     @Embedded
     private List<Address> addresses;
 
+    @Valid
     @Embedded
-    private List<Phonenumber.PhoneNumber> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 }
