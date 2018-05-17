@@ -10,7 +10,7 @@ public class RestExceptionAdvice {
 
     @ExceptionHandler(ContactException.class)
     public ResponseEntity<ExceptionResponse> handleContactExceptions(final ContactException exception) {
-        ErrorCode errorCode = ErrorCode.valueOf(exception.getMessage());
+        ErrorCode errorCode = exception.getErrorCode();
         ExceptionResponse exceptionResponse = new ExceptionResponse(errorCode);
 
         switch (errorCode) {

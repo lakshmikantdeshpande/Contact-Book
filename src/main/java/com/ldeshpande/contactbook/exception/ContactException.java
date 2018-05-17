@@ -5,11 +5,11 @@ import lombok.Getter;
 @Getter
 public class ContactException extends RuntimeException {
 
-    private String message;
+    private ErrorCode errorCode;
 
     public ContactException(ErrorCode errorCode) {
         super(errorCode.getMessage());
-        message = errorCode.getMessage();
+        this.errorCode = errorCode;
     }
 
 }

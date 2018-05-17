@@ -7,12 +7,12 @@ import lombok.ToString;
 @ToString
 public class ExceptionResponse {
 
-    private String code;
-    private String message;
+    private String errorCode;
+    private String errorMessage;
 
-    ExceptionResponse(ErrorCode errorCode) {
-        this.code = errorCode.getCode();
-        this.message = errorCode.getMessage();
+    ExceptionResponse(ErrorCode error) {
+        this.errorCode = error.getCode();
+        this.errorMessage = error.getMessage();
     }
 
 }
