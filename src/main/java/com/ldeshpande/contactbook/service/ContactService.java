@@ -10,4 +10,8 @@ public interface ContactService {
 
     Contact findContactByName(String name);
 
+    Contact updateContact(Contact contact);
+
+    void deleteContact(String email);
+
 }

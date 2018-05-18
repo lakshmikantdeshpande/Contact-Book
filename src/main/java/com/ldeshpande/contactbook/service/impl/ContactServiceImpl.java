@@ -46,4 +46,30 @@ public class ContactServiceImpl implements ContactService {
         return result;
     }
 
+    @Override
+    public void deleteContact(String email) {
+        int deleteCount = contactRepository.deleteContactByEmail(email);
+        if (deleteCount == 0) {
+            throw new ContactException(ErrorCode.CONTACT_NOT_DELETED);
+        }
+    }
+
+    @Override
+    public Contact updateContact(Contact contact) {
+        Contact originalContact = contactRepository.findContactByEmail(contact.getEmail());
+        if (originalContact == null) {
+            throw new ContactException(ErrorCode.CONTACT_NOT_UPDATED);
+        } else {
+            originalContact.setAddress(contact.getAddress());
+            originalContact.setName(contact.getName());
+            originalContact.setPhoneNumber(contact.getPhoneNumber());
+            try {
+                originalContact = contactRepository.save(originalContact);
+            } catch (Exception exception) {
+                throw new ContactException(ErrorCode.CONTACT_NOT_UPDATED, HelperUtil.convertToStackTrace(exception));
+            }
+        }
+        return originalContact;
+    }
+
 }

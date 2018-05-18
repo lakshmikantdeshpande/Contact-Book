@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
@@ -34,6 +36,7 @@ public class Contact {
 
     @NotNull
     @Email
+    @Column(unique = true)
     private String email;
 
     @Valid
@@ -42,6 +45,6 @@ public class Contact {
 
     @NotNull
     @Digits(integer = 10, fraction = 0)
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
 }

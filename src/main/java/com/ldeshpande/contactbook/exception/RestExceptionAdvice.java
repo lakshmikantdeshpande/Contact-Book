@@ -22,6 +22,8 @@ public class RestExceptionAdvice {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
             case CONTACT_NOT_SAVED:
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
+            case CONTACT_NOT_DELETED:
+                return ResponseEntity.status(HttpStatus.GONE).body(exceptionResponse);
             default:
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
         }
