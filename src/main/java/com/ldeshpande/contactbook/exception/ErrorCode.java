@@ -8,7 +8,8 @@ import lombok.ToString;
 public enum ErrorCode {
 
     UNKNOWN_ERROR("CB-000", "Unknown error, please contact the developer"),
-    CONTACT_NOT_FOUND("CB-001", "Contact not found");
+    CONTACT_NOT_FOUND("CB-001", "Contact not found"),
+    CONTACT_NOT_SAVED("CB-002", "Failed to save the contact");
 
     private String code;
     private String message;

@@ -5,6 +5,7 @@ import com.ldeshpande.contactbook.exception.ErrorCode;
 import com.ldeshpande.contactbook.model.Contact;
 import com.ldeshpande.contactbook.repository.ContactRepository;
 import com.ldeshpande.contactbook.service.ContactService;
+import com.ldeshpande.contactbook.util.HelperUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,11 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact addContact(Contact contact) {
-        Contact result = contactRepository.save(contact);
-        if (result == null) {
-            log.error("Failed to save information to database");
+        Contact result;
+        try {
+            result = contactRepository.save(contact);
+        } catch (Exception exception) {
+            throw new ContactException(ErrorCode.CONTACT_NOT_SAVED, HelperUtil.convertToStackTrace(exception));
         }
         return result;
     }
