@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -28,7 +29,8 @@ public class Contact {
     private Long id;
 
     @NotNull
-    private Name name;
+    @NotEmpty
+    private String name;
 
     @NotNull
     @Email
