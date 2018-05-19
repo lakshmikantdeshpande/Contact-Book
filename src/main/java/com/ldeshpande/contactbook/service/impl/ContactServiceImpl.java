@@ -8,7 +8,12 @@ import com.ldeshpande.contactbook.service.ContactService;
 import com.ldeshpande.contactbook.util.HelperUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -38,12 +43,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact findContactByName(String name) {
-        Contact result = contactRepository.findContactByName(name);
-        if (result == null) {
+    public List<Contact> findContactsByName(String name) {
+        List<Contact> contacts = contactRepository.findContactsByName(name);
+        if (contacts == null || contacts.isEmpty()) {
             throw new ContactException(ErrorCode.CONTACT_NOT_FOUND);
         }
-        return result;
+        return contacts;
     }
 
     @Override
@@ -52,6 +57,13 @@ public class ContactServiceImpl implements ContactService {
         if (deleteCount == 0) {
             throw new ContactException(ErrorCode.CONTACT_NOT_DELETED);
         }
+    }
+
+    @Override
+    public List<Contact> findAll(int page, int limit) {
+        Pageable pageable = PageRequest.of(page, limit);
+        Page<Contact> pageResult = contactRepository.findAll(pageable);
+        return pageResult.getContent();
     }
 
     @Override

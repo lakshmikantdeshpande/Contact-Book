@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Embeddable
 @NoArgsConstructor
-class Address {
+public class Address {
 
     @Length(max = 75)
     @NotNull

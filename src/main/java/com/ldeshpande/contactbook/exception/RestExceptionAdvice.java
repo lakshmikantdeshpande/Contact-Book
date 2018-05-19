@@ -24,9 +24,18 @@ public class RestExceptionAdvice {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
             case CONTACT_NOT_DELETED:
                 return ResponseEntity.status(HttpStatus.GONE).body(exceptionResponse);
+            case CONTACT_NOT_UPDATED:
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
             default:
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
         }
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ExceptionResponse> handleGenericExceptions(final Exception exception) {
+        log.error("API failure", exception);
+        ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCode.UNKNOWN_ERROR);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
     }
 
 }

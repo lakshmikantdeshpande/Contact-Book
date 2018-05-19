@@ -31,10 +31,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/swagger-ui.html",
             "/webjars/**"
     };
+
     @Value("${basicAuth.username}")
     private String username;
+
     @Value("${basicAuth.password}")
     private String password;
+
     @Value("${basicAuth.role}")
     private String role;
 

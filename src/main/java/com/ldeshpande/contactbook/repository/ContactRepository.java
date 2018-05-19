@@ -1,7 +1,8 @@
 package com.ldeshpande.contactbook.repository;
 
 import com.ldeshpande.contactbook.model.Contact;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +17,10 @@ public interface ContactRepository extends PagingAndSortingRepository<Contact, L
 
     Contact findContactByEmail(String email);
 
-    Contact findContactByName(String name);
+    List<Contact> findContactsByName(String name);
 
     int deleteContactByEmail(String email);
 
-    List<Contact> findAll();
+    Page<Contact> findAll(Pageable pageable);
 
 }

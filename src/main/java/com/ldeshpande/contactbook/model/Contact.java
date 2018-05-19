@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
@@ -22,7 +21,7 @@ import javax.validation.constraints.NotNull;
 @Table
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"email"})
+@EqualsAndHashCode(exclude = "id")
 public class Contact {
 
     @Id
