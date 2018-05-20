@@ -1,0 +1,9 @@
+runtime: java
+env: flex
+
+handlers:
+- url: /.*
+  script: useless field
+
+manual_scaling:
+  instances: 1
